@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
 
-        val layoutManager = InterviewLayoutManager(5, 4, false)
+        val layoutManager = InterviewLayoutManager(2, 5, false)
         binding.recyclerView.layoutManager = layoutManager
         //val snapHelper = InterviewSnapHelper()
         //snapHelper.attachToRecyclerView(binding.recyclerView)

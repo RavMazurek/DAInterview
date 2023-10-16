@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlin.math.ceil
 import kotlin.math.max
 
-class InterviewLayoutManager(private val rows: Int, private val cols: Int, private val rtl: Boolean = false) : RecyclerView.LayoutManager() {
+class InterviewLayoutManager(private val rows: Int, private val cols: Int, val rtl: Boolean = false) : RecyclerView.LayoutManager() {
 
     private var totalWidth = 0
     var horizontalOffset = 0

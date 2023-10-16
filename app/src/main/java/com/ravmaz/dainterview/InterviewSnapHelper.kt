@@ -13,7 +13,8 @@ class InterviewSnapHelper : SnapHelper() {
     }
 
     override fun findSnapView(lm: RecyclerView.LayoutManager): View? {
-        return if (lm.layoutDirection == View.LAYOUT_DIRECTION_RTL) {
+        val layoutManager = lm as InterviewLayoutManager
+        return if (layoutManager.rtl) {
             lm.getChildAt(lm.childCount - 1)
         } else {
             lm.getChildAt(0)
