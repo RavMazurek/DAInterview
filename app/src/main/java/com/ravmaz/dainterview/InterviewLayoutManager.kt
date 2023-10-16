@@ -1,5 +1,8 @@
 package com.ravmaz.dainterview
 
+import android.content.Context
+import android.view.View
+import androidx.recyclerview.widget.LinearSmoothScroller
 import androidx.recyclerview.widget.RecyclerView
 import kotlin.math.ceil
 import kotlin.math.max
@@ -103,4 +106,34 @@ class InterviewLayoutManager(private val rows: Int, private val cols: Int, priva
             }
         }
     }
+
+    override fun smoothScrollToPosition(recyclerView: RecyclerView, state: RecyclerView.State?, position: Int) {
+
+        val smoothScroller = object : LinearSmoothScroller(recyclerView.context) {
+            override fun onTargetFound(targetView: View, state: RecyclerView.State, action: Action) {
+                super.onTargetFound(targetView, state, action)
+
+                animateItem(targetView)
+            }
+        }
+
+        smoothScroller.targetPosition = position
+        startSmoothScroll(smoothScroller)
+    }
+
+    fun animateItem(view: View) {
+        view.animate()
+            .scaleX(1.2f)
+            .scaleY(1.2f)
+            .setDuration(150)
+            .withEndAction {
+                view.animate()
+                    .scaleX(1f)
+                    .scaleY(1f)
+                    .setDuration(150)
+                    .start()
+            }
+            .start()
+    }
+
 }
