@@ -2,7 +2,6 @@ package com.ravmaz.dainterview
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.GridLayoutManager
 import com.ravmaz.dainterview.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -14,7 +13,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.recyclerView.layoutManager = InterviewLayoutManager(2, 5)
+        binding.recyclerView.layoutManager = InterviewLayoutManager(5, 4, false)
         binding.recyclerView.adapter = ItemAdapter(generateSomeItems(200))
     }
 
