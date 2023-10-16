@@ -7,7 +7,7 @@ import kotlin.math.max
 class InterviewLayoutManager(private val rows: Int, private val cols: Int, private val rtl: Boolean = false) : RecyclerView.LayoutManager() {
 
     private var totalWidth = 0
-    private var horizontalOffset = 0
+    var horizontalOffset = 0
 
     override fun generateDefaultLayoutParams(): RecyclerView.LayoutParams {
         return RecyclerView.LayoutParams(RecyclerView.LayoutParams.WRAP_CONTENT, RecyclerView.LayoutParams.WRAP_CONTENT)

@@ -12,8 +12,10 @@ class MainActivity : AppCompatActivity() {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        binding.recyclerView.layoutManager = InterviewLayoutManager(5, 4, false)
+        val layoutManager = InterviewLayoutManager(5, 4, false)
+        binding.recyclerView.layoutManager = layoutManager
+        val snapHelper = InterviewSnapHelper()
+        snapHelper.attachToRecyclerView(binding.recyclerView)
         binding.recyclerView.adapter = ItemAdapter(generateSomeItems(200))
     }
 
