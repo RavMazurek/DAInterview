@@ -18,6 +18,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        binding.numberInput.setText("1")
 
         val layoutManager = InterviewLayoutManager(2, 5, false)
         binding.recyclerView.layoutManager = layoutManager
