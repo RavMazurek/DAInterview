@@ -14,7 +14,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.recyclerView.layoutManager = GridLayoutManager(this, 10)
+        binding.recyclerView.layoutManager = InterviewLayoutManager(2, 5)
         binding.recyclerView.adapter = ItemAdapter(generateSomeItems(200))
     }
 
