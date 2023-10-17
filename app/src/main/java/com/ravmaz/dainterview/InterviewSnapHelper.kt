@@ -1,4 +1,5 @@
 package com.ravmaz.dainterview
+import android.util.Log
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.SnapHelper
@@ -27,7 +28,7 @@ class InterviewSnapHelper : SnapHelper() {
         velocityY: Int
     ): Int {
         // Ignore velocity for now
-        TODO("Not yet implemented")
+        return 0
     }
 
     override fun calculateDistanceToFinalSnap(lm: RecyclerView.LayoutManager, targetView: View): IntArray {

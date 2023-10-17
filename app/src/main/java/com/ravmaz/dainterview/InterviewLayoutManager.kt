@@ -10,6 +10,7 @@ import kotlin.math.max
 class InterviewLayoutManager(private val rows: Int, private val cols: Int, val rtl: Boolean = false) : RecyclerView.LayoutManager() {
 
     private var totalWidth = 0
+    private val itemsOnPage = rows * cols
     var horizontalOffset = 0
 
     override fun generateDefaultLayoutParams(): RecyclerView.LayoutParams {
@@ -20,7 +21,6 @@ class InterviewLayoutManager(private val rows: Int, private val cols: Int, val r
         detachAndScrapAttachedViews(recycler)
 
         val totalItems = itemCount
-        val itemsOnPage = rows * cols
 
         // Determines the total width required for all items.
         // Calculate the number of pages with round up - ensuring even partially filled pages are counted.
@@ -110,16 +110,32 @@ class InterviewLayoutManager(private val rows: Int, private val cols: Int, val r
     override fun smoothScrollToPosition(recyclerView: RecyclerView, state: RecyclerView.State?, position: Int) {
 
         val smoothScroller = object : LinearSmoothScroller(recyclerView.context) {
-            override fun onTargetFound(targetView: View, state: RecyclerView.State, action: Action) {
-                super.onTargetFound(targetView, state, action)
-
-                animateItem(targetView)
+            override fun onStop() {
+                recyclerView.findViewHolderForAdapterPosition(position)?.let {
+                    animateItem(it.itemView)
+                }
+                super.onStop()
             }
         }
 
-        smoothScroller.targetPosition = position
+        smoothScroller.targetPosition = findCenterColumnForPositionPage(position)
         startSmoothScroll(smoothScroller)
     }
+
+    fun findCenterColumnForPositionPage(position: Int): Int {
+        val itemsOnPage = rows * cols
+        val page = position / itemsOnPage
+        val centerCol = cols / 2
+
+        // Check if the position is on the first page and in the first half of columns
+        if (page == 0 && (position % cols) < centerCol) {
+            return 0
+        }
+
+        return page * itemsOnPage + centerCol
+    }
+
+
 
     fun animateItem(view: View) {
         view.animate()

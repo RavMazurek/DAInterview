@@ -22,8 +22,8 @@ class MainActivity : AppCompatActivity() {
 
         val layoutManager = InterviewLayoutManager(2, 5, false)
         binding.recyclerView.layoutManager = layoutManager
-        //val snapHelper = InterviewSnapHelper()
-        //snapHelper.attachToRecyclerView(binding.recyclerView)
+        val snapHelper = InterviewSnapHelper()
+        snapHelper.attachToRecyclerView(binding.recyclerView)
         binding.recyclerView.adapter = ItemAdapter(generateSomeItems(itemsCount))
     }
 
